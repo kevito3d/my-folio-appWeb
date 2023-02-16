@@ -20,5 +20,5 @@ export const getApi = async (url, token) => {
     },
 
   });
-  return response;
+  return response.json();
 };

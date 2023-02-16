@@ -1,21 +1,25 @@
 import React from "react";
-import Divider from "./Divider";
 import Project from "./Project";
-import Spacer from "./Spacer";
 
-function Projects() {
+function Projects({projects}) {
   return (
     <>
       <div className="container-items">
-        <div className="container">
-          <Project />
-        </div>
-        <Spacer height={15}/>
-        <Divider color="#fff" height={1} />
-        <Spacer height={15}/>
-        <div className="container">
-          <Project />
-        </div>
+
+        {projects.map((project) => {
+          return (
+            <div key={project._id} className="container">
+              <Project
+                
+                name={project.name}
+                description={project.description}
+                techs={project.techs}
+                // image={project.images}
+              />
+            </div>
+          );
+        })
+        }
       </div>
     </>
   );

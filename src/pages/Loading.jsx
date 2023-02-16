@@ -8,7 +8,6 @@ function LoadingPage() {
 
   const checkToken = () => {
     const token = localStorage.getItem("token");
-    console.log({ token })
     return token;
   };
 
@@ -17,14 +16,11 @@ function LoadingPage() {
     
     if (token) {
        getApi("/user/renewToken", token).then((respuesta) => {
-        
-      if (respuesta.status == 200) {
-        respuesta.json().then((data) => {
-          console.log(data);
-          setUser(data.user);
-          saveToken(data.token);
+      if (respuesta.ok) {
+          setUser(respuesta.user);
+          saveToken(respuesta.token);
           setLoading(false);
-        });
+       
       }
       else {
         setLoading(false);

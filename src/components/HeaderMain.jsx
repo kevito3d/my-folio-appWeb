@@ -8,7 +8,7 @@ import instagram from "../assets/instagram.png";
 import cv from "../assets/cvDownload.png";
 import { useState } from "react";
 
-function HeaderMain() {
+function HeaderMain({title, description, socialsNetworks, email, phone}) {
   const [copy, setCopy] = useState(false);
 
   const copyClipboard = (text) => {
@@ -28,19 +28,16 @@ function HeaderMain() {
         />
       </div>
       <div className="divText">
-        <div className="miName">Hola, soy Kevin Coveña</div>
+        <div className="miName">{title}</div>
 
         <div className="miDescription">
           <div className="subtitle">
-            Soy un desarrollador fullstack con experiencia en Nodejs, Flutter,
-            MongoDB, MySQL, React y Git. Me gusta aprender cosas nuevas y me
-            encanta resolver problemas. 
-            <div className="subtitle"></div>
+            {description}
           </div>
         </div>
         <div className="containerIcons">
           <div className="icons">
-            <Icons
+            {/* <Icons
               icon={github}
               title="Github"
               onClick={() =>
@@ -53,9 +50,17 @@ function HeaderMain() {
               onClick={() =>
                 handleOpenRedirect("https://www.instagram.com/kevito3d/")
               }
-            ></Icons>
+            ></Icons> */}
 
-            {/* ddownload cv */}
+            {
+            socialsNetworks &&
+            socialsNetworks.map((social) => {
+              return (
+                <Icons key={social._id} icon={social.icon} title={social.title} onClick={() => handleOpenRedirect(social.url)}></Icons>
+              );
+            })
+            }
+
 
             <Icons 
               icon={cv}
@@ -65,7 +70,7 @@ function HeaderMain() {
           </div>
         </div>
         <div className="email">
-          kevincove98@gmail.com
+          {email}
           <div
             className={copy ? "btnOnCopy" : "btnOffCopy"}
             onClick={() => copyClipboard("kevincove98@gmail.com")}
