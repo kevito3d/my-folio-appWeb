@@ -73,7 +73,7 @@ function HeaderMain({title, description, socialsNetworks, email, phone}) {
           {email}
           <div
             className={copy ? "btnOnCopy" : "btnOffCopy"}
-            onClick={() => copyClipboard("kevincove98@gmail.com")}
+            onClick={() => copyClipboard(email)}
           >
             {copy ? (
               "copiado"
